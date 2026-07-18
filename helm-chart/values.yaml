@@ -8,8 +8,8 @@ student:
 replicaCount: 2
 
 image:
-  repository: ghcr.io/aisha507201/gitops-platform
-  tag: "1.0.0"
+  repository: alpine
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -52,3 +52,10 @@ podAnnotations:
   prometheus.io/scrape: "true"
   prometheus.io/port: "8080"
   prometheus.io/path: "/metrics"
+
+appConfig:
+  title: "Application Web de Aicha Sy"
+  themeColor: "mauve"
+  backgroundColor: "#E6E6FA"
+  primaryButtonColor: "#8A2BE2"
+  textColor: "#4B0082"
