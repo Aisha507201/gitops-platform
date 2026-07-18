@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-app-aicha-sy
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/aicha-sy/gitops-platform.git
+    targetRevision: main
+    path: helm-chart
+    helm:
+      valueFiles:
+        - values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: "aicha-sy"
+
+  syncPolicy:
+    automated:
+      prune: true       # supprime les ressources retirees de Git
+      selfHeal: true     # corrige toute derive manuelle (kubectl edit) automatiquement
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m

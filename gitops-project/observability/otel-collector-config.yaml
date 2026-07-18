@@ -1,0 +1,37 @@
+# A deployer via le chart open-telemetry/opentelemetry-collector
+# helm install otel-collector open-telemetry/opentelemetry-collector -f otel-collector-config.yaml -n monitoring
+
+mode: deployment
+
+config:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+
+  processors:
+    batch: {}
+    resource:
+      attributes:
+        - key: student
+          value: "aicha-sy"
+          action: insert
+
+  exporters:
+    # Exemple avec Tempo (a installer separement) ou tout backend compatible OTLP
+    otlp:
+      endpoint: tempo.monitoring.svc.cluster.local:4317
+      tls:
+        insecure: true
+    logging:
+      loglevel: info
+
+  service:
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [resource, batch]
+        exporters: [otlp, logging]

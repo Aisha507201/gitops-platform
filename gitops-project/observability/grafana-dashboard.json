@@ -1,0 +1,49 @@
+{
+  "title": "GitOps Platform - Aicha Sy",
+  "tags": ["gitops", "aicha-sy"],
+  "timezone": "browser",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Requêtes HTTP par seconde",
+      "targets": [
+        {
+          "expr": "sum(rate(http_requests_total{namespace=\"aicha-sy\"}[5m]))"
+        }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 }
+    },
+    {
+      "type": "graph",
+      "title": "Utilisation CPU des pods",
+      "targets": [
+        {
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"aicha-sy\"}[5m])) by (pod)"
+        }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 }
+    },
+    {
+      "type": "graph",
+      "title": "Utilisation mémoire des pods",
+      "targets": [
+        {
+          "expr": "sum(container_memory_working_set_bytes{namespace=\"aicha-sy\"}) by (pod)"
+        }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "Pods disponibles",
+      "targets": [
+        {
+          "expr": "kube_deployment_status_replicas_available{namespace=\"aicha-sy\"}"
+        }
+      ],
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 }
+    }
+  ],
+  "schemaVersion": 39,
+  "version": 1
+}

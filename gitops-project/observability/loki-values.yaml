@@ -1,0 +1,22 @@
+# A utiliser avec le chart grafana/loki-stack (inclut Promtail)
+# helm install loki grafana/loki-stack -f loki-values.yaml -n monitoring
+
+loki:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 5Gi
+  config:
+    limits_config:
+      retention_period: 168h  # 7 jours
+
+promtail:
+  enabled: true
+  config:
+    snippets:
+      extraRelabelConfigs:
+        - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+          target_label: app
+
+grafana:
+  enabled: false  # on reutilise le Grafana deja installe par kube-prometheus-stack
