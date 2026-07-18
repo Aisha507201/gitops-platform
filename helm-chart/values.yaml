@@ -5,7 +5,7 @@ student:
   nom: "Sy"
   prenom: "Aicha"
 
-replicaCount: 2
+replicaCount: 3
 
 image:
   repository: nginx
