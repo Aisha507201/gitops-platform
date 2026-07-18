@@ -8,8 +8,8 @@ student:
 replicaCount: 3
 
 image:
-  repository: nginx
-  tag: "alpine"
+  repository: docker.io/library/nginx
+  tag: alpine
   pullPolicy: IfNotPresent
   
 service:
