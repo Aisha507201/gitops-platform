@@ -8,8 +8,8 @@ student:
 replicaCount: 2
 
 image:
-  repository: alpine
-  tag: "latest"
+  repository: nginx
+  tag: "alpine"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
