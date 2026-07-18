@@ -9,7 +9,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/aicha-sy/gitops-platform.git
+    repoURL: https://github.com/Aisha507201/gitops-platform.git
     targetRevision: main
     path: helm-chart
     helm:

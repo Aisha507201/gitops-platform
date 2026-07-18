@@ -8,7 +8,7 @@ student:
 replicaCount: 2
 
 image:
-  repository: ghcr.io/aicha-sy/gitops-app
+  repository: ghcr.io/aisha507201/gitops-platform
   tag: "1.0.0"
   pullPolicy: IfNotPresent
 
