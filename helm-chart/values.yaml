@@ -8,10 +8,9 @@ student:
 replicaCount: 2
 
 image:
-  repository: nginx
-  tag: "alpine"
+  repository: "aisha507201/mon-image-web-app" # <--- Remets ton vrai nom d'image d'origine ici !
+  tag: "alpine" 
   pullPolicy: IfNotPresent
-
 imagePullSecrets: []
 
 service:
@@ -34,14 +33,15 @@ resources:
 
 probes:
   liveness:
-    path: /healthz
-    initialDelaySeconds: 5
+    path: /
+    port: 80
+    initialDelaySeconds: 10
     periodSeconds: 10
   readiness:
-    path: /readyz
-    initialDelaySeconds: 3
+    path: /
+    port: 80
+    initialDelaySeconds: 10
     periodSeconds: 5
-
 autoscaling:
   enabled: true
   minReplicas: 2
