@@ -9,7 +9,7 @@ replicaCount: 3
 
 image:
   repository: docker.io/library/nginx
-  tag: alpine
+  tag: "029bb71"
   pullPolicy: IfNotPresent
   
 service:
