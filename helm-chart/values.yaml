@@ -14,7 +14,7 @@ image:
 service:
   type: ClusterIP
   port: 80
-  targetPort: 8080
+  targetPort: 80  # <-- Remplace 8080 par 80 ici
 
 ingress:
   enabled: false
@@ -32,13 +32,13 @@ resources:
 probes:
   liveness:
     path: /
+    port: 80      # <-- Remplace 8080 par 80 ici
     initialDelaySeconds: 10
-    periodSeconds: 10
   readiness:
     path: /
+    port: 80      # <-- Remplace 8080 par 80 ici
     initialDelaySeconds: 10
-    periodSeconds: 5
-
+    
 autoscaling:
   enabled: true
   minReplicas: 2
