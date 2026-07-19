@@ -8,9 +8,8 @@ student:
 replicaCount: 3
 
 image:
-  repository: docker.io/library/nginx
-  tag: "alpine"  # Remplace "029bb71" par "alpine" ou "latest"
-  pullPolicy: IfNotPresent
+  repository: nginx
+  tag: "alpine"
   
 service:
   type: ClusterIP
