@@ -29,15 +29,19 @@ resources:
     cpu: 200m
     memory: 128Mi
 
-probes:
-  liveness:
+livenessProbe:
+  httpGet:
     path: /
-    port: 80      # <-- Remplace 8080 par 80 ici
-    initialDelaySeconds: 10
-  readiness:
+    port: 80  # <--- C'est ici qu'il faut mettre 80
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
     path: /
-    port: 80      # <-- Remplace 8080 par 80 ici
-    initialDelaySeconds: 10
+    port: 80  # <--- C'est ici qu'il faut mettre 80
+  initialDelaySeconds: 10
+  periodSeconds: 5
     
 autoscaling:
   enabled: true
