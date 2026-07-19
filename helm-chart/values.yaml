@@ -9,7 +9,7 @@ replicaCount: 3
 
 image:
   repository: docker.io/library/nginx
-  tag: "029bb71"
+  tag: "alpine"  # Remplace "029bb71" par "alpine" ou "latest"
   pullPolicy: IfNotPresent
   
 service:
