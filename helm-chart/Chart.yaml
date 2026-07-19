@@ -1,5 +1,4 @@
-apiVersion: v2
-name: gitops-app
+name: aicha-sy-gitops-app
 description: Plateforme GitOps individuelle - Aicha Sy
 type: application
 version: 0.1.0
