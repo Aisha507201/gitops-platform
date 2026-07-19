@@ -1,6 +1,3 @@
-# =========================================================
-# Fichier a personnaliser en priorite : nom, prenom, image
-# =========================================================
 student:
   nom: "Sy"
   prenom: "Aicha"
@@ -10,16 +7,23 @@ replicaCount: 3
 image:
   repository: nginx
   tag: "alpine"
-  
+  pullPolicy: IfNotPresent  # Ajoute cette ligne si elle manque
+
 service:
   type: ClusterIP
   port: 80
-  targetPort: 80  # <-- Remplace 8080 par 80 ici
+  targetPort: 80
 
-ingress:
-  enabled: false
-  className: nginx
-  host: "aicha-sy.local"
+# C'EST ICI LA CORRECTION
+probes:
+  liveness:
+    path: "/"
+    initialDelaySeconds: 10
+    periodSeconds: 10
+  readiness:
+    path: "/"
+    initialDelaySeconds: 10
+    periodSeconds: 5
 
 resources:
   requests:
@@ -29,32 +33,7 @@ resources:
     cpu: 200m
     memory: 128Mi
 
-probes:
-  liveness:
-    path: /
-    port: 80
-    initialDelaySeconds: 10
-    periodSeconds: 10
-  readiness:
-    path: /
-    port: 80
-    initialDelaySeconds: 10
-    periodSeconds: 5
-    
-autoscaling:
-  enabled: true
-  minReplicas: 2
-  maxReplicas: 5
-  targetCPUUtilizationPercentage: 70
-
 podAnnotations:
   prometheus.io/scrape: "true"
   prometheus.io/port: "80"
   prometheus.io/path: "/metrics"
-
-appConfig:
-  title: "Application Web de Aicha Sy"
-  themeColor: "mauve"
-  backgroundColor: "#E6E6FA"
-  primaryButtonColor: "#8A2BE2"
-  textColor: "#4B0082"
