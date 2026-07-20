@@ -37,3 +37,8 @@ podAnnotations:
   prometheus.io/scrape: "true"
   prometheus.io/port: "80"
   prometheus.io/path: "/metrics"
+
+ingress:
+  enabled: false   # Mettez true si vous souhaitez activer l'Ingress
+  className: ""
+  host: chart-example.local
